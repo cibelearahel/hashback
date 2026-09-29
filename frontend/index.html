@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HashBack — Programa de Fidelidade em Blockchain</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Efeitos de iluminação de fundo (Ethereal Glass) -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="ambient-glow glow-blue" aria-hidden="true"></div>
+  <div class="ambient-glow glow-cyan" aria-hidden="true"></div>
+
+  <div class="app-viewport">
+    
+    <!-- Navbar Flutuante Estilo Ilha -->
+    <header class="island-nav-wrapper">
+      <nav class="island-nav">
+        <div class="nav-brand">
+          <div class="bezel-badge">
+            <span class="brand-monogram">HB</span>
+          </div>
+          <div class="brand-meta">
+            <div class="brand-name">HashBack <span>DApp</span></div>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <div class="bezel-pill status-pill">
+            <span class="kinetic-dot"></span>
+            <span id="chain-status-text">Blockchain Ativa</span>
+          </div>
+          <button id="btn-reset-chain" class="island-btn" title="Reiniciar Blockchain">
+            <span>Resetar</span>
+            <span class="btn-icon-wrapper">↺</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main class="experience-container">
+      
+      <!-- Seletor e Detalhes da Conta (Double-Bezel) -->
+      <section class="double-bezel reveal-item">
+        <div class="bezel-core">
+          <div class="core-header">
+            <div>
+              <span class="micro-eyebrow">Perfil Conectado</span>
+              <h3 class="core-title" id="active-account-role">Loja Parceira</h3>
+            </div>
+            <div class="account-selector" id="account-pills">
+              <!-- Injetado dinamicamente: Loja, Alice, Bob -->
+            </div>
+          </div>
+
+          <!-- Métricas Dinâmicas (Muda conforme o Perfil) -->
+          <div class="identity-metrics" id="metrics-container">
+            <!-- Renderizado dinamicamente via JS:
+                 Para Loja: Total Emitido, Clientes Atendidos, Endereço
+                 Para Cliente: Saldo Disponível, Endereço, Nonce -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Grade Funcional Dinâmica -->
+      <div class="bento-grid" id="main-bento-grid">
+        
+        <!-- Painel de Operações (Double-Bezel) -->
+        <section class="double-bezel bento-cell-operations reveal-item" id="cell-operations">
+          <div class="bezel-core">
+            <div class="core-header">
+              <div>
+                <span class="micro-eyebrow">Operações</span>
+                <h3 class="core-title" id="operations-title">Painel da Loja</h3>
+              </div>
+            </div>
+
+            <!-- Navegação por Abas Dinâmica -->
+            <div class="segmented-control" id="segmented-tabs">
+              <!-- Injetado dinamicamente conforme o perfil -->
+            </div>
+
+            <!-- Conteúdo das Abas -->
+            <div id="tab-content-area">
+              <!-- Injetado dinamicamente via JS -->
+            </div>
+
+            <!-- Feedback da Execução -->
+            <div class="terminal-feedback" id="contract-feedback-box" style="display: none;">
+              <div class="feedback-indicator" id="feedback-badge">CONFIRMADO</div>
+              <div class="feedback-text" id="feedback-msg">Transação registrada com sucesso.</div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Catálogo de Recompensas e Vouchers (Apenas para Clientes) -->
+        <section class="double-bezel bento-cell-rewards reveal-item" id="cell-rewards">
+          <div class="bezel-core">
+            <div class="core-header">
+              <div>
+                <span class="micro-eyebrow">Catálogo</span>
+                <h3 class="core-title">Trocar Pontos por Recompensas</h3>
+              </div>
+            </div>
+
+            <div class="rewards-vault" id="rewards-container">
+              <!-- Recompensas injetadas via JS -->
+            </div>
+
+            <div class="vouchers-vault">
+              <span class="micro-eyebrow">Meus Vouchers Resgatados</span>
+              <div class="vouchers-stream" id="vouchers-container">
+                <p class="empty-plate">Nenhum voucher resgatado nesta conta.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Painel Exclusivo da Loja: Clientes Bonificados & Resumo -->
+        <section class="double-bezel bento-cell-rewards reveal-item" id="cell-merchant-summary" style="display: none;">
+          <div class="bezel-core">
+            <div class="core-header">
+              <div>
+                <span class="micro-eyebrow">Auditoria de Emissão</span>
+                <h3 class="core-title">Diretrizes do Emissor</h3>
+              </div>
+            </div>
+            
+            <div class="merchant-guidelines">
+              <div class="guideline-card">
+                <div class="guideline-badge">REGRA DE GOVERNANÇA</div>
+                <h4>Canal de Emissão Exclusiva</h4>
+                <p>A loja parceira possui autorização no contrato para criar novos pontos (<code>MINT</code>) concedidos a clientes por compras realizadas.</p>
+              </div>
+              <div class="guideline-card">
+                <div class="guideline-badge purple">PROTEÇÃO DO SISTEMA</div>
+                <h4>Imunidade a Retenção</h4>
+                <p>Lojas não recebem pontos de clientes nem resgatam itens do catálogo, impedindo a apropriação indevida de tokens do programa.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Visualizador da Blockchain (Largura Total) -->
+        <section class="double-bezel bento-cell-explorer reveal-item">
+          <div class="bezel-core">
+            <div class="core-header">
+              <div>
+                <span class="micro-eyebrow">Blockchain Local</span>
+                <h3 class="core-title">Cadeia de Blocos em Tempo Real</h3>
+              </div>
+              <div class="bezel-pill">
+                <span>Total: <strong id="blocks-count">0</strong> blocos</span>
+              </div>
+            </div>
+
+            <div class="stream-scroller" id="blockchain-timeline">
+              <!-- Blocos gerados renderizados aqui -->
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <footer class="system-footer">
+      <div class="footer-meta">
+        <span>HashBack</span>
+        <span class="separator">•</span>
+        <span>Blockchain Local Python</span>
+        <span class="separator">•</span>
+        <span>Criptografia ECDSA</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

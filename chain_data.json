@@ -1,0 +1,11 @@
+{
+  "chain": [
+    {
+      "index": 0,
+      "timestamp": 1700000000.0,
+      "transactions": [],
+      "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "current_hash": "05c6c5a589d6968dcdec65e8482884c9f72d7e5f38c8c58c09ba47fd6070bd1c"
+    }
+  ]
+}
