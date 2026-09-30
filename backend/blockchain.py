@@ -13,12 +13,14 @@ class Block:
         timestamp: float,
         transactions: List[Dict[str, Any]],
         previous_hash: str,
-        current_hash: Optional[str] = None
+        current_hash: Optional[str] = None,
+        nonce: int = 0
     ):
         self.index = index
         self.timestamp = timestamp
         self.transactions = transactions
         self.previous_hash = previous_hash
+        self.nonce = nonce
         self.current_hash = current_hash or self.calculate_hash()
 
     def calculate_hash(self) -> str:
@@ -26,7 +28,8 @@ class Block:
             "index": self.index,
             "timestamp": self.timestamp,
             "transactions": self.transactions,
-            "previous_hash": self.previous_hash
+            "previous_hash": self.previous_hash,
+            "nonce": self.nonce
         }, sort_keys=True).encode('utf-8')
         return hashlib.sha256(block_string).hexdigest()
 
@@ -36,7 +39,8 @@ class Block:
             "timestamp": self.timestamp,
             "transactions": self.transactions,
             "previous_hash": self.previous_hash,
-            "current_hash": self.current_hash
+            "current_hash": self.current_hash,
+            "nonce": self.nonce
         }
 
     @classmethod
@@ -46,8 +50,18 @@ class Block:
             timestamp=data["timestamp"],
             transactions=data["transactions"],
             previous_hash=data["previous_hash"],
-            current_hash=data.get("current_hash")
+            current_hash=data.get("current_hash"),
+            nonce=data["nonce"]
         )
+
+    def proof_of_work(self, dificulty: int):
+        self.nonce = 0
+
+        while True:
+            self.current_hash = self.calculate_hash()
+            if self.current_hash.startswith("0"*dificulty):
+                break
+            self.nonce += 1
 
 class Blockchain:
     def __init__(self, storage_file: str = "chain_data.json"):
@@ -59,6 +73,7 @@ class Blockchain:
             "nonces": {},
             "vouchers": []
         }
+        self.dificulty: int = 4
         self.load_or_initialize()
 
     def create_genesis_block(self) -> Block:
@@ -69,6 +84,8 @@ class Blockchain:
             previous_hash="0000000000000000000000000000000000000000000000000000000000000000",
             current_hash=None
         )
+
+        genesis_block.proof_of_work(self.dificulty)
         return genesis_block
 
     def load_or_initialize(self):
@@ -134,6 +151,8 @@ class Blockchain:
             transactions=[tx.to_dict()],
             previous_hash=last_block.current_hash
         )
+
+        new_block.proof_of_work(self.dificulty)
 
         self.chain.append(new_block)
         self.save_chain()
