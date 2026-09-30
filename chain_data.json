@@ -5,7 +5,29 @@
       "timestamp": 1700000000.0,
       "transactions": [],
       "previous_hash": "0000000000000000000000000000000000000000000000000000000000000000",
-      "current_hash": "05c6c5a589d6968dcdec65e8482884c9f72d7e5f38c8c58c09ba47fd6070bd1c"
+      "current_hash": "0000565f07638482840f4fa0f331d9123d73d5fdbf4f228a4d87faafd1200935",
+      "nonce": 6143
+    },
+    {
+      "index": 1,
+      "timestamp": 1790805029.9475698,
+      "transactions": [
+        {
+          "tx_id": "0x23673fb214c0b78683bf5387cf85e5eec88d65a5299bdb7eb02f80eb745d7453",
+          "type": "MINT",
+          "sender": "0xf1d12012406b87afb27f6dd16ac0a76fcdaa55ed",
+          "recipient": "0x80a9f99957b29af20338037cf06360bc55422e5b",
+          "amount": 150,
+          "sender_public_key": "031b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f",
+          "reward_id": null,
+          "nonce": 0,
+          "timestamp": 1790805029.9321578,
+          "signature": "3044022009f37e800707dbc7d7bd811f95d4cb7bf62ebd310524e7d98eca0fd3634858bb022034a515c7007bc14bdc46aeb02a433006800cd38ccb55e7f8634562d14fe0dd35"
+        }
+      ],
+      "previous_hash": "0000565f07638482840f4fa0f331d9123d73d5fdbf4f228a4d87faafd1200935",
+      "current_hash": "0000c0ff3c66f9ecfbe075ec92092a2a456e0770617dfe0e6adcac3f4c204f21",
+      "nonce": 46043
     }
   ]
 }
